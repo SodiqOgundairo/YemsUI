@@ -1,6 +1,6 @@
+import { motion } from "motion/react";
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { motion } from "motion/react";
 import { cn } from "../lib/utils";
 
 /**
@@ -147,7 +147,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                   ? `${props.id}-hint`
                   : undefined
             }
-            {...props}
+            {...(props as any)}
           />
 
           {/* Right Icon with animation */}
@@ -217,7 +217,7 @@ const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
         "transition-all duration-200 hover:translate-x-0.5",
         className,
       )}
-      {...props}
+      {...(props as any)}
     >
       {children}
       {required && <span className="text-error ml-1">*</span>}
@@ -306,7 +306,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           aria-invalid={hasError}
-          {...props}
+          {...(props as any)}
         />
         {error && (
           <motion.p
@@ -327,3 +327,5 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 Textarea.displayName = "Textarea";
 
 export { Input, Label, FormField, Textarea, inputVariants };
+
+

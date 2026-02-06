@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as PopoverPrimitive from "@radix-ui/react-popover";
-import { motion } from "motion/react";
 import { cn } from "../lib/utils";
 
 /**
@@ -32,10 +31,11 @@ const PopoverContent = React.forwardRef<
         "data-[side=top]:slide-in-from-bottom-2",
         className,
       )}
-      {...props}
+      {...(props as any)}
     />
   </PopoverPrimitive.Portal>
 ));
 PopoverContent.displayName = PopoverPrimitive.Content.displayName;
 
 export { Popover, PopoverTrigger, PopoverContent };
+

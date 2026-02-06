@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { ChevronDown } from "lucide-react";
-import { motion } from "motion/react";
 import { cn } from "../lib/utils";
 
 /**
@@ -18,7 +17,7 @@ const AccordionItem = React.forwardRef<
   <AccordionPrimitive.Item
     ref={ref}
     className={cn("glass-card rounded-xl border border-border mb-2", className)}
-    {...props}
+    {...(props as any)}
   />
 ));
 AccordionItem.displayName = "AccordionItem";
@@ -36,7 +35,7 @@ const AccordionTrigger = React.forwardRef<
         "[&[data-state=open]>svg]:rotate-180",
         className,
       )}
-      {...props}
+      {...(props as any)}
     >
       {children}
       <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200" />
@@ -52,7 +51,7 @@ const AccordionContent = React.forwardRef<
   <AccordionPrimitive.Content
     ref={ref}
     className="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
-    {...props}
+    {...(props as any)}
   >
     <div className={cn("pb-4 pt-0 px-4", className)}>{children}</div>
   </AccordionPrimitive.Content>
@@ -61,3 +60,4 @@ const AccordionContent = React.forwardRef<
 AccordionContent.displayName = AccordionPrimitive.Content.displayName;
 
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };
+

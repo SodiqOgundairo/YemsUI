@@ -1,5 +1,5 @@
-import * as React from "react";
 import { motion } from "motion/react";
+import * as React from "react";
 import { cn } from "../lib/utils";
 import { Button } from "./button";
 
@@ -29,7 +29,7 @@ const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
           "flex flex-col items-center justify-center text-center p-8 glass-card rounded-xl",
           className,
         )}
-        {...props}
+        {...(props as any)}
       >
         {icon && (
           <motion.div
@@ -85,3 +85,5 @@ const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
 EmptyState.displayName = "EmptyState";
 
 export { EmptyState };
+
+

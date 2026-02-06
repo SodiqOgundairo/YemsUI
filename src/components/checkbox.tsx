@@ -1,7 +1,7 @@
+import { motion } from "motion/react";
 import * as React from "react";
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 import { Check } from "lucide-react";
-import { motion } from "motion/react";
 import { cn } from "../lib/utils";
 
 /**
@@ -22,7 +22,7 @@ const Checkbox = React.forwardRef<
       "transition-all duration-200",
       className,
     )}
-    {...props}
+    {...(props as any)}
   >
     <CheckboxPrimitive.Indicator
       className={cn("flex items-center justify-center text-current")}
@@ -40,3 +40,5 @@ const Checkbox = React.forwardRef<
 Checkbox.displayName = CheckboxPrimitive.Root.displayName;
 
 export { Checkbox };
+
+

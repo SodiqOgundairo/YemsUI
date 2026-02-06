@@ -16,7 +16,7 @@ const ToastViewport = React.forwardRef<
       "fixed top-0 z-100 flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]",
       className,
     )}
-    {...props}
+    {...(props as any)}
   />
 ));
 ToastViewport.displayName = ToastPrimitives.Viewport.displayName;
@@ -46,7 +46,7 @@ const Toast = React.forwardRef<
     <ToastPrimitives.Root
       ref={ref}
       className={cn(toastVariants({ variant }), className)}
-      {...props}
+      {...(props as any)}
     />
   );
 });
@@ -62,7 +62,7 @@ const ToastAction = React.forwardRef<
       "inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium ring-offset-background transition-colors hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 group-[.destructive]:border-muted/40 group-[.destructive]:hover:border-destructive/30 group-[.destructive]:hover:bg-destructive group-[.destructive]:hover:text-destructive-foreground group-[.destructive]:focus:ring-destructive",
       className,
     )}
-    {...props}
+    {...(props as any)}
   />
 ));
 ToastAction.displayName = ToastPrimitives.Action.displayName;
@@ -78,7 +78,7 @@ const ToastClose = React.forwardRef<
       className,
     )}
     toast-close=""
-    {...props}
+    {...(props as any)}
   >
     <X className="h-4 w-4" />
   </ToastPrimitives.Close>
@@ -92,7 +92,7 @@ const ToastTitle = React.forwardRef<
   <ToastPrimitives.Title
     ref={ref}
     className={cn("text-sm font-semibold", className)}
-    {...props}
+    {...(props as any)}
   />
 ));
 ToastTitle.displayName = ToastPrimitives.Title.displayName;
@@ -104,7 +104,7 @@ const ToastDescription = React.forwardRef<
   <ToastPrimitives.Description
     ref={ref}
     className={cn("text-sm opacity-90", className)}
-    {...props}
+    {...(props as any)}
   />
 ));
 ToastDescription.displayName = ToastPrimitives.Description.displayName;
@@ -124,3 +124,4 @@ export {
   ToastClose,
   ToastAction,
 };
+

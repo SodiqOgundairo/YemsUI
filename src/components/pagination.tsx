@@ -1,6 +1,6 @@
+import { motion } from "motion/react";
 import * as React from "react";
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
-import { motion } from "motion/react";
 import { cn } from "../lib/utils";
 import { Button } from "./button";
 
@@ -78,7 +78,7 @@ const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
         role="navigation"
         aria-label="pagination"
         className={cn("mx-auto flex w-full justify-center", className)}
-        {...props}
+        {...(props as any)}
       >
         <ul className="flex flex-row items-center gap-1">
           <li>
@@ -146,3 +146,5 @@ const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
 Pagination.displayName = "Pagination";
 
 export { Pagination };
+
+

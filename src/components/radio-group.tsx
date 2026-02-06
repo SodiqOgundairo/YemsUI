@@ -15,7 +15,7 @@ const RadioGroup = React.forwardRef<
   return (
     <RadioGroupPrimitive.Root
       className={cn("grid gap-2", className)}
-      {...props}
+      {...(props as any)}
       ref={ref}
     />
   );
@@ -25,9 +25,16 @@ RadioGroup.displayName = RadioGroupPrimitive.Root.displayName;
 const RadioGroupItem = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>
->(({ className, ...props }, ref) => {
+>(({ className, onClick, ...props }, ref) => {
   const [isChecked, setIsChecked] = React.useState(false);
   const [showExplosion, setShowExplosion] = React.useState(false);
+
+  const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    setIsChecked(true);
+    setShowExplosion(true);
+    setTimeout(() => setShowExplosion(false), 800);
+    onClick?.(e);
+  };
 
   return (
     <RadioGroupPrimitive.Item
@@ -43,16 +50,8 @@ const RadioGroupItem = React.forwardRef<
         "hover:scale-110 hover:shadow-[0_0_10px_rgba(80,0,171,0.2)]",
         className,
       )}
-      onCheckedChange={(checked: boolean) => {
-        if (checked) {
-          setIsChecked(true);
-          setShowExplosion(true);
-          setTimeout(() => setShowExplosion(false), 800);
-        } else {
-          setIsChecked(false);
-        }
-      }}
-      {...props}
+      onClick={handleClick}
+      {...(props as any)}
     >
       {/* Explosion effect with DISPERSION */}
       <AnimatePresence>
@@ -137,3 +136,4 @@ const RadioGroupItem = React.forwardRef<
 RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName;
 
 export { RadioGroup, RadioGroupItem };
+

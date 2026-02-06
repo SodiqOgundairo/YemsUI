@@ -20,14 +20,15 @@ const Card = React.forwardRef<
     )}
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.3, ease: "easeOut" }}
     {...(hover
       ? {
           whileHover: { y: -4, scale: 1.01 },
           whileTap: { scale: 0.99 },
           transition: { type: "spring", stiffness: 300, damping: 20 },
         }
-      : {})}
+      : {
+          transition: { duration: 0.3, ease: "easeOut" },
+        })}
     {...(props as HTMLMotionProps<"div">)}
   />
 ));
@@ -40,7 +41,7 @@ const CardHeader = React.forwardRef<
   <div
     ref={ref}
     className={cn("flex flex-col space-y-1.5 p-6", className)}
-    {...props}
+    {...(props as any)}
   />
 ));
 CardHeader.displayName = "CardHeader";
@@ -56,7 +57,7 @@ const CardTitle = React.forwardRef<
       "transition-colors duration-200",
       className,
     )}
-    {...props}
+    {...(props as any)}
   />
 ));
 CardTitle.displayName = "CardTitle";
@@ -68,7 +69,7 @@ const CardDescription = React.forwardRef<
   <p
     ref={ref}
     className={cn("text-sm text-muted-foreground", className)}
-    {...props}
+    {...(props as any)}
   />
 ));
 CardDescription.displayName = "CardDescription";
@@ -77,7 +78,7 @@ const CardContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
+  <div ref={ref} className={cn("p-6 pt-0", className)} {...(props as any)} />
 ));
 CardContent.displayName = "CardContent";
 
@@ -88,7 +89,7 @@ const CardFooter = React.forwardRef<
   <div
     ref={ref}
     className={cn("flex items-center p-6 pt-0", className)}
-    {...props}
+    {...(props as any)}
   />
 ));
 CardFooter.displayName = "CardFooter";

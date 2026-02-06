@@ -1,6 +1,6 @@
+import { motion } from "motion/react";
 import * as React from "react";
 import { ChevronRight } from "lucide-react";
-import { motion } from "motion/react";
 import { cn } from "../lib/utils";
 
 /**
@@ -26,7 +26,7 @@ const Breadcrumbs = React.forwardRef<HTMLElement, BreadcrumbsProps>(
         ref={ref}
         aria-label="Breadcrumb"
         className={cn("flex items-center space-x-1 text-sm", className)}
-        {...props}
+        {...(props as any)}
       >
         <ol className="flex items-center space-x-1">
           {items.map((item, index) => {
@@ -79,3 +79,5 @@ const Breadcrumbs = React.forwardRef<HTMLElement, BreadcrumbsProps>(
 Breadcrumbs.displayName = "Breadcrumbs";
 
 export { Breadcrumbs };
+
+

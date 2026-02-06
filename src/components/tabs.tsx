@@ -1,6 +1,6 @@
+import { motion } from "motion/react";
 import * as React from "react";
 import * as TabsPrimitive from "@radix-ui/react-tabs";
-import { motion } from "motion/react";
 import { cn } from "../lib/utils";
 
 /**
@@ -19,7 +19,7 @@ const TabsList = React.forwardRef<
       "glass-card inline-flex h-10 items-center justify-center rounded-xl p-1 text-muted-foreground",
       className,
     )}
-    {...props}
+    {...(props as any)}
   />
 ));
 TabsList.displayName = TabsPrimitive.List.displayName;
@@ -38,7 +38,7 @@ const TabsTrigger = React.forwardRef<
       "hover:bg-muted/50",
       className,
     )}
-    {...props}
+    {...(props as any)}
   >
     <motion.span
       initial={{ scale: 1 }}
@@ -63,7 +63,7 @@ const TabsContent = React.forwardRef<
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
       className,
     )}
-    {...props}
+    {...(props as any)}
   >
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -77,3 +77,5 @@ const TabsContent = React.forwardRef<
 TabsContent.displayName = TabsPrimitive.Content.displayName;
 
 export { Tabs, TabsList, TabsTrigger, TabsContent };
+
+

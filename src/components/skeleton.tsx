@@ -1,5 +1,4 @@
 import * as React from "react";
-import { motion } from "motion/react";
 import { cn } from "../lib/utils";
 
 /**
@@ -40,7 +39,7 @@ const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
           animationClasses[animation],
           className,
         )}
-        {...props}
+        {...(props as any)}
       />
     );
   },
@@ -115,3 +114,4 @@ const SkeletonTable: React.FC<{
 );
 
 export { Skeleton, SkeletonText, SkeletonCard, SkeletonAvatar, SkeletonTable };
+

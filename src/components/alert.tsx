@@ -59,7 +59,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
             className={cn(alertVariants({ variant }), className)}
-            {...props}
+            {...(props as any)}
           >
             {children}
             {dismissible && (
@@ -86,7 +86,7 @@ const AlertTitle = React.forwardRef<
   <h5
     ref={ref}
     className={cn("mb-1 font-medium leading-none tracking-tight", className)}
-    {...props}
+    {...(props as any)}
   />
 ));
 AlertTitle.displayName = "AlertTitle";
@@ -98,9 +98,10 @@ const AlertDescription = React.forwardRef<
   <div
     ref={ref}
     className={cn("text-sm [&_p]:leading-relaxed", className)}
-    {...props}
+    {...(props as any)}
   />
 ));
 AlertDescription.displayName = "AlertDescription";
 
 export { Alert, AlertTitle, AlertDescription };
+

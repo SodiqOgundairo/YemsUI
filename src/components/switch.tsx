@@ -16,7 +16,7 @@ const Switch = React.forwardRef<
       "data-[state=unchecked]:bg-muted",
       className,
     )}
-    {...props}
+    {...(props as any)}
     ref={ref}
   >
     <SwitchPrimitives.Thumb
@@ -31,3 +31,4 @@ const Switch = React.forwardRef<
 Switch.displayName = SwitchPrimitives.Root.displayName;
 
 export { Switch };
+

@@ -23,10 +23,11 @@ const Separator = React.forwardRef<
         orientation === "horizontal" ? "h-px w-full" : "h-full w-px",
         className,
       )}
-      {...props}
+      {...(props as any)}
     />
   ),
 );
 Separator.displayName = SeparatorPrimitive.Root.displayName;
 
 export { Separator };
+

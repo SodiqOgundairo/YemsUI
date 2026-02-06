@@ -192,7 +192,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           className={cn(buttonVariants({ variant, size, className }))}
           ref={ref}
           disabled={disabled || isLoading}
-          {...props}
+          {...(props as any)}
         >
           {content}
         </Comp>
@@ -231,7 +231,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         ref={ref}
         size={size}
         className={cn("rounded-full", className)}
-        {...props}
+        {...(props as any)}
       >
         {children}
       </Button>
@@ -241,3 +241,4 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
 IconButton.displayName = "IconButton";
 
 export { Button, IconButton, buttonVariants };
+

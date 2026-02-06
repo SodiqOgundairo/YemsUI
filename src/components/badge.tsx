@@ -71,7 +71,7 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
     <div
       ref={ref}
       className={cn(badgeVariants({ variant, size }), className)}
-      {...props}
+      {...(props as any)}
     >
       {dot && (
         <span
@@ -124,3 +124,4 @@ const StatusBadge: React.FC<StatusBadgeProps> = ({
 StatusBadge.displayName = "StatusBadge";
 
 export { Badge, StatusBadge, badgeVariants };
+
