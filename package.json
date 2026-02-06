@@ -3,8 +3,16 @@
   "version": "1.0.0",
   "description": "A beautiful React component library with glassmorphism effects and premium animations",
   "main": "dist/index.js",
-  "module": "dist/index.esm.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./styles.css": "./dist/index.css"
+  },
   "files": [
     "dist",
     "README.md"
