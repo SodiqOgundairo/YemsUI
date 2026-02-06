@@ -19,7 +19,9 @@
   ],
   "scripts": {
     "build": "tsup",
-    "dev": "tsup --watch",
+    "dev": "npm run dev --prefix playground",
+    "preview": "npm run preview --prefix playground",
+    "build:library": "tsup",
     "lint": "eslint .",
     "type-check": "tsc --noEmit"
   },
@@ -69,6 +71,8 @@
     "@types/react-dom": "^19.0.0",
     "autoprefixer": "^10.4.24",
     "postcss": "^8.5.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "tailwindcss": "^4.1.18",
     "tsup": "^8.3.5",
     "typescript": "^5.7.3"

@@ -4,3 +4,6 @@ node_modules
 .env
 .turbo
 
+* /playground/
+playground/
+@CONTRIBUTING.md
