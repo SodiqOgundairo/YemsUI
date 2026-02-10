@@ -14,16 +14,26 @@ A beautiful React component library with **glassmorphism effects**, **premium an
 
 ## 📦 Installation
 
+### Via NPM (Recommended)
+
 ```bash
-npm install github:SodiqOgundairo/YemsUI
+npm install @yems-ui/core
 ```
 
 ### Peer Dependencies
 
-Make sure you have these installed:
+Make sure you have React 18+ installed:
 
 ```bash
 npm install react react-dom
+```
+
+### Required: Tailwind CSS v4
+
+This library requires Tailwind CSS v4:
+
+```bash
+npm install tailwindcss@next
 ```
 
 ---
@@ -62,7 +72,23 @@ export default defineConfig({
 
 ---
 
-## 🚀 Usage
+## � Framework Integration
+
+This library works with any React framework or setup:
+
+- **Next.js** - Works with App Router and Pages Router
+- **Vite** - Full support with HMR
+- **Create React App** - Compatible
+- **Remix** - Works as expected
+- **Astro + React** - Fully compatible
+- **Gatsby** - Supported
+- **Any custom webpack/rollup setup** - Should work fine
+
+> **Note**: Mobile support is built-in. Components are touch-friendly and work on React Native Web setups.
+
+---
+
+## �🚀 Usage
 
 ```tsx
 import {

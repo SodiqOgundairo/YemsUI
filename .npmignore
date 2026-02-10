@@ -1,0 +1,45 @@
+# Development files
+playground/
+.github/
+.git/
+src/
+
+# Configuration files
+tsconfig.json
+tsconfig.*.json
+tsup.config.ts
+eslint.config.js
+vite.config.ts
+
+# Documentation (README is included)
+CONTRIBUTING.md
+NPM_PUBLISH_CHECKLIST.md
+
+# Testing and build artifacts
+dist/*.map
+.turbo/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Dependencies (users will install their own)
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml

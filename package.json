@@ -15,7 +15,8 @@
   },
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "build": "tsup",
@@ -23,7 +24,8 @@
     "preview": "npm run preview --prefix playground",
     "build:library": "tsup",
     "lint": "eslint .",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "prepublishOnly": "npm run build && npm run type-check"
   },
   "keywords": [
     "react",
@@ -31,13 +33,25 @@
     "ui",
     "glassmorphism",
     "tailwind",
-    "radix-ui"
+    "radix-ui",
+    "animation",
+    "typescript",
+    "accessible",
+    "a11y"
   ],
   "author": "Sodiq Ogundairo",
   "license": "MIT",
+  "homepage": "https://github.com/SodiqOgundairo/YemsUI#readme",
+  "bugs": {
+    "url": "https://github.com/SodiqOgundairo/YemsUI/issues"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/SodiqOgundairo/YemsUI.git"
+    "url": "https://github.com/SodiqOgundairo/YemsUI.git",
+    "directory": "."
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
