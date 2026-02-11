@@ -113,7 +113,19 @@ function App() {
   React.useEffect(() => {
     document.documentElement.classList.remove("light", "dark");
     document.documentElement.classList.add(theme);
+    localStorage.setItem("theme", theme);
   }, [theme]);
+
+  // Load theme from localStorage on mount
+  React.useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else {
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      setTheme(prefersDark ? "dark" : "light");
+    }
+  }, []);
 
   React.useEffect(() => {
     const timer = setTimeout(() => setProgress(66), 500);
@@ -123,72 +135,93 @@ function App() {
   return (
     <TooltipProvider>
       <div
-        className={`min-h-screen w-full bg-background text-foreground p-4 md:p-8 font-sans transition-colors duration-300`}
+        className={`min-h-screen w-full bg-background text-foreground transition-colors duration-300 flex flex-col`}
       >
         {/* Header */}
-        <header className="mb-8 md:mb-12 flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div>
-            <h1 className="text-4xl font-display font-bold tracking-tight mb-2 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent inline-block">
-              YemsUI Design System
-            </h1>
-            <p className="text-muted-foreground text-lg max-w-2xl">
-              Glassmorphism-based UI kit for modern applications. Featuring
-              liquid glass effects, micro-interactions, and accessible
-              primitives.
-            </p>
-          </div>
-          <div className="flex items-center gap-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme((t) => (t === "dark" ? "light" : "dark"))}
-              className="rounded-full"
-            >
-              {theme === "dark" ? (
-                <Sun className="h-5 w-5" />
-              ) : (
-                <Moon className="h-5 w-5" />
-              )}
-            </Button>
-            <Button
-              variant="primary"
-              onClick={() =>
-                window.open("https://github.com/yems-ui", "_blank")
-              }
-              leftIcon={<Globe className="h-4 w-4" />}
-            >
-              GitHub
-            </Button>
+        <header className="sticky top-0 z-50 border-b border-border/50 bg-background/95 backdrop-blur-lg">
+          <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 md:py-6 flex items-center justify-between gap-6">
+            <div className="flex-1">
+              <div className="flex items-baseline gap-3 mb-2">
+                <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                  YemsUI
+                </h1>
+                <span className="text-xs font-semibold px-2 py-1 rounded-full bg-primary/10 text-primary">
+                  v1.1.1
+                </span>
+              </div>
+              <p className="text-muted-foreground text-sm md:text-base max-w-2xl">
+                Modern React component library with glassmorphism effects and premium interactions
+              </p>
+            </div>
+            
+            <div className="flex items-center gap-2 md:gap-3 flex-wrap justify-end">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setTheme((t) => (t === "dark" ? "light" : "dark"))}
+                    className="rounded-lg"
+                  >
+                    {theme === "dark" ? (
+                      <Sun className="h-5 w-5" />
+                    ) : (
+                      <Moon className="h-5 w-5" />
+                    )}
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Toggle {theme === "dark" ? "light" : "dark"} mode</p>
+                </TooltipContent>
+              </Tooltip>
+
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() =>
+                  window.open("https://github.com/SodiqOgundairo/YemsUI", "_blank")
+                }
+                className="gap-2"
+              >
+                <Globe className="h-4 w-4" />
+                <span className="hidden sm:inline">GitHub</span>
+              </Button>
+            </div>
           </div>
         </header>
 
-        <Tabs defaultValue="general" className="space-y-8">
-          <TabsList className="w-full justify-start overflow-x-auto p-1.5 h-auto gap-1 bg-glass border border-glass-border no-scrollbar">
-            <TabsTrigger value="general" className="px-4 py-2">
-              General
-            </TabsTrigger>
-            <TabsTrigger value="forms" className="px-4 py-2">
-              Forms
-            </TabsTrigger>
-            <TabsTrigger value="feedback" className="px-4 py-2">
-              Feedback
-            </TabsTrigger>
-            <TabsTrigger value="navigation" className="px-4 py-2">
-              Navigation
-            </TabsTrigger>
-            <TabsTrigger value="overlays" className="px-4 py-2">
-              Overlays
-            </TabsTrigger>
-            <TabsTrigger value="data" className="px-4 py-2">
-              Data Display
-            </TabsTrigger>
-          </TabsList>
+        {/* Main Content */}
+        <main className="flex-1 w-full">
+          <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
+            <Tabs defaultValue="general" className="w-full space-y-8">
+              <div className="overflow-x-auto -mx-4 md:-mx-8 px-4 md:px-8 sticky top-[88px] z-40 bg-background/95 backdrop-blur-lg pb-4 border-b border-border/50">
+                <TabsList className="w-full md:w-auto justify-start gap-1 p-1 h-auto bg-background/50 border border-border/50 rounded-lg">
+                  <TabsTrigger value="general" className="px-3 md:px-4 py-2 text-sm md:text-base">
+                    General
+                  </TabsTrigger>
+                  <TabsTrigger value="forms" className="px-3 md:px-4 py-2 text-sm md:text-base">
+                    Forms
+                  </TabsTrigger>
+                  <TabsTrigger value="feedback" className="px-3 md:px-4 py-2 text-sm md:text-base">
+                    Feedback
+                  </TabsTrigger>
+                  <TabsTrigger value="navigation" className="px-3 md:px-4 py-2 text-sm md:text-base">
+                    Navigation
+                  </TabsTrigger>
+                  <TabsTrigger value="overlays" className="px-3 md:px-4 py-2 text-sm md:text-base">
+                    Overlays
+                  </TabsTrigger>
+                  <TabsTrigger value="data" className="px-3 md:px-4 py-2 text-sm md:text-base">
+                    Data
+                  </TabsTrigger>
+                </TabsList>
+              </div>
 
-          {/* GENERAL TAB */}
-          <TabsContent
-            value="general"
-            className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500"
-          >
+              {/* GENERAL TAB */}
+              <TabsContent
+                value="general"
+                className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500"
+              >
             {/* Buttons */}
             <Section
               title="Buttons"
@@ -398,13 +431,13 @@ function App() {
                 </TabsContent>
               </Tabs>
             </Section>
-          </TabsContent>
+              </TabsContent>
 
-          {/* FORMS TAB */}
-          <TabsContent
-            value="forms"
-            className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500"
-          >
+              {/* FORMS TAB */}
+              <TabsContent
+                value="forms"
+                className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500"
+              >
             <Section title="Inputs" description="Data entry fields.">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl">
                 <Input
@@ -514,13 +547,13 @@ function App() {
                 </SelectContent>
               </Select>
             </Section>
-          </TabsContent>
+              </TabsContent>
 
-          {/* FEEDBACK TAB */}
-          <TabsContent
-            value="feedback"
-            className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500"
-          >
+              {/* FEEDBACK TAB */}
+              <TabsContent
+                value="feedback"
+                className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500"
+              >
             <Section title="Alerts" description="Important messages.">
               <div className="flex flex-col gap-4 w-full max-w-2xl">
                 <Alert variant="info">
@@ -618,13 +651,13 @@ function App() {
                 }}
               />
             </Section>
-          </TabsContent>
+              </TabsContent>
 
-          {/* NAVIGATION TAB */}
-          <TabsContent
-            value="navigation"
-            className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500"
-          >
+              {/* NAVIGATION TAB */}
+              <TabsContent
+                value="navigation"
+                className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500"
+              >
             <Section title="Breadcrumbs" description="Page hierarchy path.">
               <Breadcrumbs
                 items={[
@@ -663,13 +696,13 @@ function App() {
                 </AccordionItem>
               </Accordion>
             </Section>
-          </TabsContent>
+              </TabsContent>
 
-          {/* OVERLAYS TAB */}
-          <TabsContent
-            value="overlays"
-            className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500"
-          >
+              {/* OVERLAYS TAB */}
+              <TabsContent
+                value="overlays"
+                className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500"
+              >
             <Section title="Dialog" description="Modal window.">
               <Dialog>
                 <DialogTrigger asChild>
@@ -748,13 +781,13 @@ function App() {
                 </DropdownMenuContent>
               </DropdownMenu>
             </Section>
-          </TabsContent>
+              </TabsContent>
 
-          {/* DATA DISPLAY TAB */}
-          <TabsContent
-            value="data"
-            className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500"
-          >
+              {/* DATA DISPLAY TAB */}
+              <TabsContent
+                value="data"
+                className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500"
+              >
             <Section title="Table" description="Data rows.">
               <div className="border border-border rounded-xl overflow-hidden glass-card">
                 <Table>
@@ -798,8 +831,44 @@ function App() {
             </Section>
           </TabsContent>
         </Tabs>
-        <Toaster />
-      </div>
+          </div>
+        </main>
+
+        {/* Footer */}
+        <footer className="border-t border-border/50 bg-background/95 mt-12 md:mt-16">
+          <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12 text-center space-y-4">
+            <p className="text-muted-foreground text-sm">
+              YemsUI © 2024 • Built with React & Tailwind CSS
+            </p>
+            <div className="flex justify-center gap-6">
+              <a
+                href="https://github.com/SodiqOgundairo/YemsUI"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+              >
+                GitHub
+              </a>
+              <a
+                href="https://www.npmjs.com/package/yems-ui"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+              >
+                NPM
+              </a>
+              <a
+                href="https://github.com/SodiqOgundairo/YemsUI#readme"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+              >
+                Documentation
+              </a>
+            </div>
+          </div>
+        </footer>
+
     </TooltipProvider>
   );
 }
@@ -816,11 +885,11 @@ function Section({
 }) {
   return (
     <div className="space-y-4">
-      <div className="space-y-1">
-        <h2 className="text-2xl font-semibold text-foreground/90">{title}</h2>
+      <div className="space-y-1.5">
+        <h2 className="text-xl md:text-2xl font-semibold text-foreground tracking-tight">{title}</h2>
         <p className="text-muted-foreground text-sm">{description}</p>
       </div>
-      <div className="p-6 md:p-8 rounded-2xl border border-border/50 bg-background/40 backdrop-blur-xl shadow-glass gap-6 flex flex-wrap items-start">
+      <div className="p-6 md:p-8 rounded-xl md:rounded-2xl border border-border/40 bg-muted/30 backdrop-blur-sm space-y-6 flex flex-col items-start">
         {children}
       </div>
     </div>
