@@ -1,7 +1,6 @@
 {
-  "root": "playground",
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
+  "buildCommand": "npm run build --prefix playground",
+  "outputDirectory": "playground/dist",
   "framework": "vite",
   "public": true
 }
