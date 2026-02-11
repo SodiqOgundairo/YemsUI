@@ -829,8 +829,8 @@ function App() {
                 </Table>
               </div>
             </Section>
-          </TabsContent>
-        </Tabs>
+              </TabsContent>
+            </Tabs>
           </div>
         </main>
 
