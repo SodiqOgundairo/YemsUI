@@ -1,6 +1,6 @@
 {
-  "buildCommand": "npm run build:playground",
-  "outputDirectory": "playground/dist",
-  "framework": "vite",
-  "public": true
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist-demo",
+  "installCommand": "npm install",
+  "framework": "vite"
 }

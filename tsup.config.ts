@@ -7,6 +7,7 @@ export default defineConfig({
   splitting: false,
   sourcemap: true,
   clean: true,
+  // Do NOT include demo/ — tsup only builds the publishable library
   external: ['react', 'react-dom', 'tailwindcss'],
   treeshake: true,
 })
